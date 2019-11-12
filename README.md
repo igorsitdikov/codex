@@ -1,4 +1,4 @@
-# CODEX test
+# codex test assignment
 
 ## Project setup
 ```
