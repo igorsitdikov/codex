@@ -1,6 +1,6 @@
 <template>
     <label class="text-reader">
-        Считать файл
+        Открыть файл
         <input type="file" @change="readFile"/>
     </label>
 </template>
