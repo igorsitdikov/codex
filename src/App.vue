@@ -2,8 +2,9 @@
     <div id="app">
         <img alt="Vue logo" src="./assets/logo.png"/>
         <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-        <canvas-table :todo="canvas" @clicked="onClickButton"></canvas-table>
+        <canvas-table :canvas="canvas" @clicked="onClickDraw"></canvas-table>
         <text-reader @load="[input = $event, readParameters()]"></text-reader>
+        <text-writer v-if="created" :url="url" :download="filename"></text-writer>
     </div>
 </template>
 
@@ -16,6 +17,7 @@
     import Line from "./model/Line.js";
     import Rectangle from "./model/Rectangle.js";
     import TextReader from "./components/TextReader.vue";
+    import TextWriter from "./components/TextWriter";
 
     export default {
         name: "app",
@@ -24,18 +26,23 @@
             input: "",
             output: "",
             borderColor: "x",
-            color: "s"
+            color: "s",
+            url: "",
+            filename: "output.txt",
+            created: false
         }),
         components: {
             CanvasTable,
-            TextReader
+            TextReader,
+            TextWriter
         },
         methods: {
-            onClickButton(value) {
+            onClickDraw(value) {
                 let point5 = new Point(parseInt(value[1]), parseInt(value[0]));
                 this.bucketFill(point5, this.color);
             },
             readParameters() {
+                this.created = false;
                 let rs = [];
                 this.$data.input.split("\n").forEach(element => {
                     rs.push(element.split(" "));
@@ -80,7 +87,8 @@
                         }
                     }
                 });
-                this.txtToFile(this.$data.output, "result.txt");
+                this.txtToFile(this.$data.output);
+                this.created = true;
             },
             initTable(w, h) {
                 this.$data.canvas = new Array(h);
@@ -119,20 +127,9 @@
                 }
                 this.$data.output += output;
             },
-            txtToFile(txt, filename) {
+            txtToFile(txt) {
                 let blob = new Blob([txt], {type: "text/plain;charset=utf-8;"});
-                if (navigator.msSaveBlob) {
-                    navigator.msSaveBlob(blob, filename);
-                } else {
-                    let link = document.createElement("a");
-                    if (link.download !== undefined) {
-                        let url = URL.createObjectURL(blob);
-                        link.setAttribute("href", url);
-                        link.setAttribute("download", filename);
-                        link.innerHTML = "Скачать";
-                        document.body.appendChild(link);
-                    }
-                }
+                this.url = URL.createObjectURL(blob);
             },
             bucketFill(point, color) {
                 let x = point.x;

@@ -1,6 +1,6 @@
 <template>
     <table>
-        <tr v-for="(row,r_index) in todo" :key="r_index">
+        <tr v-for="(row,r_index) in canvas" :key="r_index">
             <td v-for="(cell,c_index) in row" :key="c_index" @click="getCell(r_index,c_index)">{{cell}}</td>
         </tr>
     </table>
@@ -11,7 +11,7 @@
     export default {
         name: "CanvasTable",
         props: {
-            todo: {
+            canvas: {
                 type: Array,
                 required: true
             }

@@ -32,6 +32,7 @@
         padding: 8px 12px;
         cursor: pointer;
         margin-top: 20px;
+        color: rgb(44, 62, 80);
     }
 
     .text-reader input {
