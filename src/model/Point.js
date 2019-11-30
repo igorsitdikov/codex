@@ -1,10 +1,10 @@
-
-class Point{
-    constructor(x,y){
+class Point {
+    constructor(x, y) {
         this.x = x;
         this.y = y;
     }
-    toString(){
+
+    toString() {
         return `${this.x}, ${this.y}`
     }
 }

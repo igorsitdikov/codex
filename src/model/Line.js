@@ -1,8 +1,8 @@
-class Line{
-    constructor(start, end){
-      this.start = start;
-      this.end = end;
+class Line {
+    constructor(start, end) {
+        this.start = start;
+        this.end = end;
     }
-  }
-  
-  export default Line;
+}
+
+export default Line;
