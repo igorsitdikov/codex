@@ -3,7 +3,6 @@
         <img alt="Vue logo" src="./assets/logo.png"/>
         <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
         <canvas-table :todo="canvas" @clicked="onClickButton"></canvas-table>
-
         <text-reader @load="[input = $event, readParameters()]"></text-reader>
     </div>
 </template>
@@ -53,7 +52,7 @@
                             let start = new Point(parseInt(el[1]), parseInt(el[2]));
                             let end = new Point(parseInt(el[3]), parseInt(el[4]));
                             let line = new Line(start, end);
-                            this.drawLine(line, this.borderColor);
+                            line.drawLine(this.$data.canvas, this.borderColor);
                             this.createImage();
                         }
                             break;
@@ -70,7 +69,7 @@
                                 rectangleTopLeft,
                                 rectangleBotRight
                             );
-                            this.drawRectangle(rectangle);
+                            rectangle.drawRectangle(this.$data.canvas, this.borderColor);
                             this.createImage();
                         }
                             break;
@@ -88,39 +87,6 @@
                 for (var i = 0; i < this.$data.canvas.length; i++) {
                     this.$data.canvas[i] = new Array(w);
                 }
-            },
-            drawLine(line, color) {
-                if (line.start.x === line.end.x) {
-                    if (line.start.y <= line.end.y) {
-                        for (let y = line.start.y - 1; y < line.end.y; y++) {
-                            this.$data.canvas[y][line.start.x - 1] = color;
-                        }
-                    } else {
-                        for (let y = line.end.y - 1; y < line.start.y; y++) {
-                            this.$data.canvas[y][line.start.x - 1] = color;
-                        }
-                    }
-
-                } else if (line.start.y === line.end.y) {
-                    if (line.start.x <= line.end.x) {
-                        for (let x = line.start.x - 1; x < line.end.x; x++) {
-                            this.$data.canvas[line.start.y - 1][x] = color;
-                        }
-                    } else {
-                        for (let x = line.end.x - 1; x < line.start.x; x++) {
-                            this.$data.canvas[line.start.y - 1][x] = color;
-                        }
-                    }
-
-                } else {
-                    console.log("Wrong input");
-                }
-            },
-            drawRectangle(rectangle) {
-                this.drawLine(rectangle.topLine, this.borderColor);
-                this.drawLine(rectangle.botLine, this.borderColor);
-                this.drawLine(rectangle.rightLine, this.borderColor);
-                this.drawLine(rectangle.leftLine, this.borderColor);
             },
             createImage() {
                 let output = "";
@@ -163,10 +129,8 @@
                         let url = URL.createObjectURL(blob);
                         link.setAttribute("href", url);
                         link.setAttribute("download", filename);
-                        link.style.visibility = "hidden";
+                        link.innerHTML = "Скачать";
                         document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
                     }
                 }
             },
@@ -197,7 +161,6 @@
                     ) {
                         const newRow = this.$data.canvas[_y].slice(0);
                         newRow[_x] = color;
-                        this.$set(this.$data.canvas[_y], _x, color);
                         this.$set(this.$data.canvas, _y, newRow);
 
                         stack.push([_x - 1, _y]);

@@ -14,6 +14,13 @@ class Rectangle {
         this.leftLine = new Line(this.topRight, this.botRight);
     }
 
+    drawRectangle(canvas, color) {
+        this.topLine.drawLine(canvas, color);
+        this.botLine.drawLine(canvas, color);
+        this.rightLine.drawLine(canvas, color);
+        this.leftLine.drawLine(canvas, color);
+    }
+
     toString() {
         console.log(`${this.topLeft.toString()}; ${this.topRight.toString()}; ${this.botLeft.toString()}; ${this.botRight.toString()}`)
     }
