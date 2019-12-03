@@ -1,7 +1,6 @@
 <template>
     <div id="app">
         <img alt="Vue logo" src="./assets/logo.png"/>
-        <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
         <canvas-table :canvas="canvas" @clicked="onClickDraw"></canvas-table>
         <text-reader @load="[input = $event, readParameters()]"></text-reader>
         <text-writer v-if="created" :url="url" :download="filename"></text-writer>
@@ -10,8 +9,6 @@
 
 <script>
     /* eslint-disable no-unused-vars */
-
-    // import HelloWorld from './components/HelloWorld.vue'
     import CanvasTable from "./components/CanvasTable.vue";
     import Point from "./model/Point.js";
     import Line from "./model/Line.js";

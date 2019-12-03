@@ -4,7 +4,14 @@ class Line {
         this.end = end;
     }
 
+    _checkArgs(start, end) {
+        if (start.x !== end.x && start.y !== end.y) {
+            throw new Error("line must be either vertical or horizontal");
+        }
+    }
+
     drawLine(canvas, color) {
+        this._checkArgs(this.start, this.end);
         if (this.start.x === this.end.x) {
             if (this.start.y <= this.end.y) {
                 for (let y = this.start.y - 1; y < this.end.y; y++) {
@@ -26,9 +33,6 @@ class Line {
                     canvas[this.start.y - 1][x] = color;
                 }
             }
-
-        } else {
-            console.log("Wrong input");
         }
     }
 }
