@@ -1,14 +1,15 @@
 import {createLocalVue, mount, shallowMount} from '@vue/test-utils'
 import App from '@/App.vue'
+import CanvasTable from '@/components/CanvasTable.vue'
 
 describe("App", () => {
     test('is a Vue instance', () => {
-        const wrapper = mount(App)
+        const wrapper = mount(App);
         expect(wrapper.isVueInstance()).toBeTruthy()
     });
 
     test('matches snapshot', () => {
-        const wrapper = shallowMount(App)
+        const wrapper = shallowMount(App);
         expect(wrapper.html()).toMatchSnapshot()
     });
 
@@ -29,6 +30,7 @@ describe("App", () => {
         wrapper.vm.initTable(3, 3);
         expect(wrapper.vm.canvas).toEqual(expected);
     });
+
     it('should fullFill function', () => {
         const expected = [
             ["o", "o", "x"],

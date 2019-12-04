@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CanvasTable matches snapshot 1`] = `
+<table>
+  <tr>
+    <td>o</td>
+    <td>o</td>
+    <td>x</td>
+  </tr>
+  <tr>
+    <td>x</td>
+    <td>o</td>
+    <td>x</td>
+  </tr>
+  <tr>
+    <td>x</td>
+    <td>o</td>
+    <td>x</td>
+  </tr>
+</table>
+`;
+
+exports[`CanvasTable matches snapshot 2`] = `
+<table>
+  <tr>
+    <td>o</td>
+    <td>o</td>
+    <td>o</td>
+  </tr>
+  <tr>
+    <td>o</td>
+    <td>o</td>
+    <td>o</td>
+  </tr>
+  <tr>
+    <td>o</td>
+    <td>o</td>
+    <td>o</td>
+  </tr>
+</table>
+`;

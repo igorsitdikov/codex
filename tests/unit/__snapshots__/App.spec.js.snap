@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App matches snapshot 1`] = `
+<div id="app"><img alt="Vue logo" src="./assets/logo.png">
+  <canvas-table-stub canvas=""></canvas-table-stub>
+  <text-reader-stub></text-reader-stub>
+  <!---->
+</div>
+`;
