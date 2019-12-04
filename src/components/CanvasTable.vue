@@ -16,9 +16,6 @@
                 required: true
             }
         },
-//   data: function(){
-//       return {cell : this.point}
-//   },
         methods: {
             getCell(x, y) {
                 this.$emit('clicked', [x, y]);
